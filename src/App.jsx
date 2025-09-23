@@ -61,6 +61,12 @@ const receiptActivity = [
   { retailer: 'Starbucks', points: '+350 pts', time: 'Yesterday' },
 ]
 
+const quickStats = [
+  { label: 'Receipt streak', value: '5 days' },
+  { label: 'Rewards ready', value: '$15' },
+  { label: 'Team bonus', value: '420 pts' },
+]
+
 function App() {
   return (
     <div className="app" id="top">
@@ -115,28 +121,81 @@ function App() {
               </div>
             </dl>
           </div>
-          <div className="hero-visual" aria-hidden>
+          <div className="hero-visual" aria-hidden="true">
             <div className="phone-shell">
               <div className="phone-screen">
-                <header className="screen-header">
-                  <span className="screen-balance-label">Points balance</span>
-                  <span className="screen-balance">24,380</span>
-                </header>
-                <div className="screen-receipts">
-                  {receiptActivity.map((receipt) => (
-                    <article className="screen-card" key={receipt.retailer}>
-                      <div>
-                        <h3>{receipt.retailer}</h3>
-                        <p>{receipt.time}</p>
-                      </div>
-                      <span>{receipt.points}</span>
-                    </article>
-                  ))}
+                <div className="status-bar">
+                  <span className="status-time">9:41</span>
+                  <div className="status-icons">
+                    <span className="icon-signal" />
+                    <span className="icon-wifi" />
+                    <span className="icon-battery">
+                      <span className="battery-level" />
+                    </span>
+                  </div>
                 </div>
-                <footer className="screen-footer">
-                  <span>Redeem points</span>
-                  <button type="button">Shop rewards</button>
-                </footer>
+                <section className="screen-hero" aria-label="Rewards overview">
+                  <div className="screen-hero-top">
+                    <span className="avatar" />
+                    <div className="screen-hero-text">
+                      <span className="screen-hero-label">Rewards</span>
+                      <strong>Good morning, Maya</strong>
+                    </div>
+                    <span className="screen-settings" />
+                  </div>
+                  <div className="screen-balance-block">
+                    <span className="screen-balance-label">Points balance</span>
+                    <span className="screen-balance">24,380</span>
+                  </div>
+                  <div className="screen-hero-actions">
+                    <span className="screen-action-primary">Scan</span>
+                    <span className="screen-action-secondary">Redeem</span>
+                  </div>
+                  <div className="screen-summary">
+                    {quickStats.map((stat) => (
+                      <div className="summary-card" key={stat.label}>
+                        <span className="summary-label">{stat.label}</span>
+                        <span className="summary-value">{stat.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+                <section className="screen-section" aria-label="Recent activity">
+                  <header className="screen-section-header">
+                    <h3>Recent activity</h3>
+                    <span className="screen-view-all">View all</span>
+                  </header>
+                  <div className="screen-list">
+                    {receiptActivity.map((receipt) => (
+                      <article className="screen-card" key={receipt.retailer}>
+                        <span className="screen-card-icon">{receipt.retailer.charAt(0)}</span>
+                        <div>
+                          <h4>{receipt.retailer}</h4>
+                          <p>{receipt.time}</p>
+                        </div>
+                        <span className="screen-card-points">{receipt.points}</span>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+                <nav className="screen-nav" aria-label="App navigation">
+                  <div className="screen-nav-item is-active">
+                    <span className="nav-icon nav-icon-home" />
+                    <span>Home</span>
+                  </div>
+                  <div className="screen-nav-item">
+                    <span className="nav-icon nav-icon-scan" />
+                    <span>Scan</span>
+                  </div>
+                  <div className="screen-nav-item">
+                    <span className="nav-icon nav-icon-rewards" />
+                    <span>Rewards</span>
+                  </div>
+                  <div className="screen-nav-item">
+                    <span className="nav-icon nav-icon-profile" />
+                    <span>Profile</span>
+                  </div>
+                </nav>
               </div>
             </div>
           </div>
